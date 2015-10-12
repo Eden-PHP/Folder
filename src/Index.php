@@ -1,9 +1,9 @@
 <?php //-->
-/*
- * This file is part of the System package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden package.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
@@ -16,9 +16,10 @@ use Eden\File\Index as File;
  * folder manipulation listing and information
  * per folder.
  *
- * @vendor Eden
- * @package System
- * @author Christian Blanquera cblanquera@openovate.com
+ * @vendor   Eden
+ * @package  System
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @standard PSR-2
  */
 class Index extends Base
 {
@@ -28,6 +29,7 @@ class Index extends Base
      * Creates a folder given the path
      *
      * @param int chmod
+     *
      * @return this
      */
     public function create($chmod = 0755)
@@ -57,6 +59,7 @@ class Index extends Base
      *
      * @param string|null regular expression
      * @param bool
+     *
      * @return array
      */
     public function getFiles($regex = null, $recursive = false)
@@ -99,6 +102,7 @@ class Index extends Base
      *
      * @param string regular expression
      * @param bool
+     *
      * @return array
      */
     public function getFolders($regex = null, $recursive = false)
@@ -153,6 +157,7 @@ class Index extends Base
      * path is a real file
      *
      * @param string|null
+     *
      * @return bool
      */
     public function isFolder($path = null)
@@ -192,6 +197,7 @@ class Index extends Base
      * Removes files given the path and optionally a regular expression
      *
      * @param string|null regular expression
+     *
      * @return this
      */
     public function removeFiles($regex = null)
@@ -219,6 +225,7 @@ class Index extends Base
      * Removes a folder given the path and optionally the regular expression
      *
      * @param string regular expression
+     *
      * @return this
      */
     public function removeFolders($regex = null)
