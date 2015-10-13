@@ -1,6 +1,6 @@
 <?php //-->
 /**
- * This file is part of the Eden package.
+ * This file is part of the Eden PHP Library.
  * (c) 2014-2016 Openovate Labs
  *
  * Copyright and license information can be found at LICENSE.txt
@@ -17,20 +17,23 @@ use Eden\File\Index as File;
  * per folder.
  *
  * @vendor   Eden
- * @package  System
+ * @package  Folder
  * @author   Christian Blanquera <cblanquera@openovate.com>
  * @standard PSR-2
  */
 class Index extends Base
 {
+    /**
+     * @const string ERROR_CHMOD_IS_INVALID Error template
+     */
     const ERROR_CHMOD_IS_INVALID = 'Invalid permissions set when creating the folder %s.';
 
     /**
      * Creates a folder given the path
      *
-     * @param int chmod
+     * @param int $chmod the UNIX permissions level
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function create($chmod = 0755)
     {
@@ -57,8 +60,8 @@ class Index extends Base
     /**
      * Returns a list of files given the path and optionally the pattern
      *
-     * @param string|null regular expression
-     * @param bool
+     * @param string|null $regex     Regular expression to match files against
+     * @param bool        $recursive To recursively look in folders
      *
      * @return array
      */
@@ -100,8 +103,8 @@ class Index extends Base
     /**
      * Returns a list of folders given the path and optionally the regular expression
      *
-     * @param string regular expression
-     * @param bool
+     * @param string|null $regex     Regular expression to match folders against
+     * @param bool        $recursive To recursively look in folders
      *
      * @return array
      */
@@ -156,7 +159,7 @@ class Index extends Base
      * Checks to see if this
      * path is a real file
      *
-     * @param string|null
+     * @param string|null $path the path to test against
      *
      * @return bool
      */
@@ -177,7 +180,7 @@ class Index extends Base
     /**
      * Removes a folder given the path
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function remove()
     {
@@ -198,7 +201,7 @@ class Index extends Base
      *
      * @param string|null regular expression
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function removeFiles($regex = null)
     {
@@ -224,9 +227,9 @@ class Index extends Base
     /**
      * Removes a folder given the path and optionally the regular expression
      *
-     * @param string regular expression
+     * @param string $regex Regular expression to test against
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function removeFolders($regex = null)
     {
@@ -253,7 +256,7 @@ class Index extends Base
     /**
      * Removes files and folder given a path
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function truncate()
     {
