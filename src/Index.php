@@ -1,9 +1,9 @@
 <?php //-->
-/*
- * This file is part of the System package of the Eden PHP Library.
- * (c) 2013-2014 Openovate Labs
+/**
+ * This file is part of the Eden PHP Library.
+ * (c) 2014-2016 Openovate Labs
  *
- * Copyright and license information can be found at LICENSE
+ * Copyright and license information can be found at LICENSE.txt
  * distributed with this package.
  */
 
@@ -16,19 +16,24 @@ use Eden\File\Index as File;
  * folder manipulation listing and information
  * per folder.
  *
- * @vendor Eden
- * @package System
- * @author Christian Blanquera cblanquera@openovate.com
+ * @vendor   Eden
+ * @package  Folder
+ * @author   Christian Blanquera <cblanquera@openovate.com>
+ * @standard PSR-2
  */
 class Index extends Base
 {
+    /**
+     * @const string ERROR_CHMOD_IS_INVALID Error template
+     */
     const ERROR_CHMOD_IS_INVALID = 'Invalid permissions set when creating the folder %s.';
 
     /**
      * Creates a folder given the path
      *
-     * @param int chmod
-     * @return this
+     * @param int $chmod the UNIX permissions level
+     *
+     * @return Eden\Folder\Index
      */
     public function create($chmod = 0755)
     {
@@ -55,8 +60,9 @@ class Index extends Base
     /**
      * Returns a list of files given the path and optionally the pattern
      *
-     * @param string|null regular expression
-     * @param bool
+     * @param string|null $regex     Regular expression to match files against
+     * @param bool        $recursive To recursively look in folders
+     *
      * @return array
      */
     public function getFiles($regex = null, $recursive = false)
@@ -97,8 +103,9 @@ class Index extends Base
     /**
      * Returns a list of folders given the path and optionally the regular expression
      *
-     * @param string regular expression
-     * @param bool
+     * @param string|null $regex     Regular expression to match folders against
+     * @param bool        $recursive To recursively look in folders
+     *
      * @return array
      */
     public function getFolders($regex = null, $recursive = false)
@@ -152,7 +159,8 @@ class Index extends Base
      * Checks to see if this
      * path is a real file
      *
-     * @param string|null
+     * @param string|null $path the path to test against
+     *
      * @return bool
      */
     public function isFolder($path = null)
@@ -172,7 +180,7 @@ class Index extends Base
     /**
      * Removes a folder given the path
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function remove()
     {
@@ -192,7 +200,8 @@ class Index extends Base
      * Removes files given the path and optionally a regular expression
      *
      * @param string|null regular expression
-     * @return this
+     *
+     * @return Eden\Folder\Index
      */
     public function removeFiles($regex = null)
     {
@@ -218,8 +227,9 @@ class Index extends Base
     /**
      * Removes a folder given the path and optionally the regular expression
      *
-     * @param string regular expression
-     * @return this
+     * @param string $regex Regular expression to test against
+     *
+     * @return Eden\Folder\Index
      */
     public function removeFolders($regex = null)
     {
@@ -246,7 +256,7 @@ class Index extends Base
     /**
      * Removes files and folder given a path
      *
-     * @return this
+     * @return Eden\Folder\Index
      */
     public function truncate()
     {
