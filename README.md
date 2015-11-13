@@ -1,11 +1,21 @@
 ![logo](http://eden.openovate.com/assets/images/cloud-social.png) Eden Folder
 ====
-[![Build Status](https://api.travis-ci.org/Eden-PHP/Folder.png)](https://travis-ci.org/Eden-PHP/Folder)
+[![Build Status](https://api.travis-ci.org/Eden-PHP/Folder.svg)](https://travis-ci.org/Eden-PHP/Folder)
 ====
 
-- [Install](#install)
-- [Introduction](#intro)
-- [Contributing](#contributing)
+ - [Install](#install)
+ - [Introduction](#intro)
+ - [API](#api)
+    - [create](#create)
+    - [getFiles](#getFiles)
+    - [getFolders](#getFolders)
+    - [getName](#getName)
+    - [isFolder](#isFolder)
+    - [remove](#remove)
+    - [removeFiles](#removeFiles)
+    - [removeFolders](#removeFolders)
+    - [truncate](#truncate)
+ - [Contributing](#contributing)
 
 ====
 
@@ -19,9 +29,230 @@
 <a name="intro"></a>
 ## Introduction
 
-TODO
+Instantiate folder in this manner.
+
+```
+$folder = eden('folder', '/some/path/to/folder');
+```
 
 ====
+
+<a name="api"></a>
+## API
+
+==== 
+
+<a name="create"></a>
+
+### create
+
+Creates a folder given the path 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->create(int $chmod);
+```
+
+#### Parameters
+
+ - `int $chmod` - the UNIX permissions level
+
+Returns `Eden\Folder\Index`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->create();
+```
+
+==== 
+
+<a name="getFiles"></a>
+
+### getFiles
+
+Returns a list of files given the path and optionally the pattern 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->getFiles(string|null $regex, bool $recursive);
+```
+
+#### Parameters
+
+ - `string|null $regex` - Regular expression to match files against
+ - `bool $recursive` - To recursively look in folders
+
+Returns `array`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->getFiles();
+```
+
+==== 
+
+<a name="getFolders"></a>
+
+### getFolders
+
+Returns a list of folders given the path and optionally the regular expression 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->getFolders(string|null $regex, bool $recursive);
+```
+
+#### Parameters
+
+ - `string|null $regex` - Regular expression to match folders against
+ - `bool $recursive` - To recursively look in folders
+
+Returns `array`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->getFolders();
+```
+
+==== 
+
+<a name="getName"></a>
+
+### getName
+
+Returns the name of the directory.. just the name 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->getName();
+```
+
+#### Parameters
+
+Returns `string` - the name
+
+==== 
+
+<a name="isFolder"></a>
+
+### isFolder
+
+Checks to see if this path is a real file 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->isFolder(string|null $path);
+```
+
+#### Parameters
+
+ - `string|null $path` - the path to test against
+
+Returns `bool`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->isFolder();
+```
+
+==== 
+
+<a name="remove"></a>
+
+### remove
+
+Removes a folder given the path 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->remove();
+```
+
+#### Parameters
+
+Returns `Eden\Folder\Index`
+
+==== 
+
+<a name="removeFiles"></a>
+
+### removeFiles
+
+Removes files given the path and optionally a regular expression 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->removeFiles(string|null regular);
+```
+
+#### Parameters
+
+ - `string|null regular` - expression
+
+Returns `Eden\Folder\Index`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->removeFiles();
+```
+
+==== 
+
+<a name="removeFolders"></a>
+
+### removeFolders
+
+Removes a folder given the path and optionally the regular expression 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->removeFolders(string $regex);
+```
+
+#### Parameters
+
+ - `string $regex` - Regular expression to test against
+
+Returns `Eden\Folder\Index`
+
+#### Example
+
+```
+eden('folder', '/some/path/to/folder')->removeFolders();
+```
+
+==== 
+
+<a name="truncate"></a>
+
+### truncate
+
+Removes files and folder given a path 
+
+#### Usage
+
+```
+eden('folder', '/some/path/to/folder')->truncate();
+```
+
+#### Parameters
+
+Returns `Eden\Folder\Index`
+
+==== 
 
 <a name="contributing"></a>
 #Contributing to Eden
